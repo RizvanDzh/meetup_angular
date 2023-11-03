@@ -1,0 +1,29 @@
+<section class="auth">
+  <h1 class="auth__title">Авторизация</h1>
+  <div class="auth__container">
+    <form class="auth__form form" [formGroup]="authReactiveForm">
+      <div class="form__input-container">
+        <input
+          type="email"
+          class="form__input"
+          name="login"
+          placeholder="Login"
+          formControlName="login"
+        />
+      </div>
+      <div class="form__input-container">
+        <input
+          type="password"
+          class="form__input"
+          name="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </div>
+      <div class="form__buttons-container">
+        <a class="form__link" href="#">How to create <br />account?</a>
+        <button class="form__button" (click)="loginAuth()">Log in</button>
+      </div>
+    </form>
+  </div>
+</section>
