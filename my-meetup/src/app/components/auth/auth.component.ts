@@ -28,15 +28,11 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {}
 
   loginAuth() {
-    console.log(
-      this.authReactiveForm.value.login,
-      this.authReactiveForm.value.password
-    );
     this.auth
       .login(
         this.authReactiveForm.value.login,
         this.authReactiveForm.value.password
       )
-      .subscribe((data) => console.log(data));
+      .subscribe(console.log);
   }
 }
