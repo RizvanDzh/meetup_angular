@@ -3,8 +3,14 @@
   background-color: #1e1e1e;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .container {
   flex: 1 0 auto;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
 }

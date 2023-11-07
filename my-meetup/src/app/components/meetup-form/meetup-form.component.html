@@ -1,1 +1,144 @@
-<p>meetup-form works!</p>
+<section class="meetup-form">
+  <h2 class="meetup-form__title">
+    {{ data ? "Редактирование митапа" : "Создание митапа" }}
+  </h2>
+  <form class="meetup-form__form form" [formGroup]="modalReactiveForm">
+    <div class="form__inputs-container">
+      <div class="form__row row">
+        <label class="row__label">Название:</label>
+        <input
+          class="row__input row__input--name"
+          type="text"
+          formControlName="name"
+        />
+      </div>
+      <div class="form__row-container">
+        <div class="form__row row">
+          <label class="row__label">Дата:</label>
+          <input
+            class="row__input row__input--time"
+            type="date"
+            formControlName="date"
+          />
+        </div>
+        <div class="form__row row">
+          <label class="row__label">Время:</label>
+          <input
+            class="row__input row__input--time"
+            type="time"
+            formControlName="time"
+          />
+        </div>
+      </div>
+      <div class="form__row row">
+        <label class="row__label">Место:</label>
+        <input
+          class="row__input row__input--name"
+          type="text"
+          formControlName="place"
+        />
+      </div>
+      <div class="form__row row">
+        <label class="row__label"
+          >Короткое<br />
+          описание:</label
+        >
+        <textarea
+          class="row__input row__input--area"
+          formControlName="shortDesc"
+          cols="30"
+          rows="10"
+        ></textarea>
+      </div>
+      <div class="form__row row">
+        <label class="row__label"
+          >Подробное <br />
+          описание:</label
+        >
+        <textarea
+          class="row__input row__input--area"
+          formControlName="longDesc"
+          cols="30"
+          rows="10"
+        ></textarea>
+      </div>
+      <div class="form__row row">
+        <label class="row__label"
+          >Целевая <br />
+          аудитория</label
+        >
+        <textarea
+          class="row__input row__input--area"
+          formControlName="target"
+          cols="30"
+          rows="10"
+          placeholder="Аналитики, тестировщики, зумеры..."
+        ></textarea>
+      </div>
+      <div class="form__row row">
+        <label class="row__label"
+          >Что надо <br />
+          знать?</label
+        >
+        <textarea
+          class="row__input row__input--area"
+          formControlName="need"
+          cols="30"
+          rows="10"
+          placeholder="любой язык программирования"
+        ></textarea>
+      </div>
+      <div class="form__row row">
+        <label class="row__label">Что будет?</label>
+        <textarea
+          class="row__input row__input--area"
+          formControlName="will"
+          cols="30"
+          rows="10"
+          placeholder="научу готовить пиццу"
+        ></textarea>
+      </div>
+      <div class="form__row row">
+        <label class="row__label"
+          >Почему надо <br />
+          обязательно <br />
+          прийти?</label
+        >
+        <textarea
+          class="row__input row__input--area"
+          formControlName="reason"
+          cols="30"
+          rows="10"
+          placeholder="Потому что гладиолус"
+        ></textarea>
+      </div>
+    </div>
+    <div class="form__buttons buttons">
+      <div class="buttons__container">
+        <button
+          class="buttons__button buttons__button--del"
+          *ngIf="data"
+          type="button"
+          (click)="deleteForm()"
+        >
+          Удалить
+        </button>
+        <button
+          class="buttons__button buttons__button--cancel"
+          type="button"
+          (click)="cancelForm()"
+        >
+          Отмена
+        </button>
+        <button
+          class="buttons__button buttons__button--save"
+          type="button"
+          [disabled]="modalReactiveForm.invalid"
+          (click)="saveMeetup()"
+        >
+          Сохранить
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
