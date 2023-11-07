@@ -16,15 +16,44 @@
       </div>
     </div>
     <div class="navbar__menu menu">
-      <a class="menu__item" href="#">Все митапы</a>
-      <a class="menu__item" href="#">Мои митапы</a>
-      <a class="menu__item" href="#">Пользователи</a>
+      <a
+        class="menu__item"
+        routerLink="/meetups"
+        routerLinkActive="active"
+        *ngIf="isAuth"
+        >Все митапы</a
+      >
+      <a
+        class="menu__item"
+        routerLink="/myMeetups"
+        routerLinkActive="active"
+        *ngIf="isAuth"
+        >Мои митапы</a
+      >
+      <a
+        class="menu__item"
+        routerLink="/userList"
+        routerLinkActive="active"
+        *ngIf="isAuth && isAdmin"
+        >Пользователи</a
+      >
     </div>
-    <a href="#" class="navbar__user"
-      ><img
-        src="../../../assets/images/logo-authorization.svg"
-        alt="Иконка авторизации"
-        class="navbar__logo-authorization"
-    /></a>
+    <div>
+      <a class="navbar__user"
+        ><img
+          src="../../../assets/images/logo-authorization.svg"
+          alt="Иконка авторизации"
+          class="navbar__logo-authorization"
+          *ngIf="!isAuth"
+      /></a>
+      <a href="" class="navbar__user"
+        ><img
+          src="../../../assets/images/logo-logout.svg"
+          alt="Иконка выхода"
+          class="navbar__logo-logout"
+          *ngIf="isAuth"
+          (click)="logout()"
+      /></a>
+    </div>
   </nav>
 </header>

@@ -1,1 +1,103 @@
-<p>meetup-card works!</p>
+<section
+  class="meetup-card"
+  *ngIf="meetup"
+  [ngClass]="{
+    'meetup-card--opened': openedCard.getOpenedCard()?.includes(meetup.id)
+  }"
+>
+  <header class="meetup-card__header header">
+    <div class="header__left-title-container caption">
+      <h3 class="caption__title">
+        {{ meetup.name }}
+      </h3>
+      <p class="caption__subtitle">{{ meetup.users.length }} подписчик</p>
+    </div>
+    <div class="header__right-title-container caption">
+      <h3 class="caption__title">
+        {{ meetup.time | date : "dd.MM.yy HH:mm" }}
+      </h3>
+      <p class="caption__subtitle">{{ meetup.location }}</p>
+    </div>
+  </header>
+  <main class="meetup-card__main main">
+    <p class="main__description-primary">
+      {{ meetup.description ? meetup.description : "Нет данных" }}
+    </p>
+    <div
+      class="main__description-extra description-extra"
+      [ngClass]="{
+        'description-extra--visible': openedCard
+          .getOpenedCard()
+          ?.includes(meetup.id)
+      }"
+    >
+      <h4 class="description-extra__title">Целевая аудитория</h4>
+      <p class="description-extra__text">
+        {{ meetup.target_audience ? meetup.target_audience : "Нет данных" }}
+      </p>
+      <h4 class="description-extra__title">Что надо знать?</h4>
+      <p class="description-extra__text">
+        {{ meetup.need_to_know ? meetup.need_to_know : "Нет данных" }}
+      </p>
+      <h4 class="description-extra__title">Что будет?</h4>
+      <p class="description-extra__text">
+        {{ meetup.will_happen ? meetup.will_happen : "Нет данных" }}
+      </p>
+      <h4 class="description-extra__title">Почему надо обязательно прийти?</h4>
+      <p class="description-extra__text">
+        {{ meetup.reason_to_come ? meetup.reason_to_come : "Нет данных" }}
+      </p>
+    </div>
+  </main>
+  <footer class="meetup-card__footer footer">
+    <div class="footer__author author">
+      <img
+        src="../../../assets/images/logo-author.svg"
+        alt="иконка автора"
+        class="author__icon"
+      />
+      <p class="author__name">{{ meetup.owner.fio }}</p>
+    </div>
+    <div class="footer__buttons buttons">
+      <div class="buttons__subscribe-container">
+        <button
+          class="buttons__item buttons__item--yes"
+          *ngIf="!isGoing && !(this.meetup.createdBy === this.auth.user.id)"
+          (click)="addVisitor()"
+        >
+          Я пойду!
+        </button>
+        <button
+          class="buttons__item buttons__item--no"
+          *ngIf="isGoing && !(this.meetup.createdBy === this.auth.user.id)"
+          (click)="deleteVisitor()"
+        >
+          Не смогу пойти
+        </button>
+        <button
+          class="buttons__item buttons__item--yes"
+          (click)="openDialog(meetup)"
+          *ngIf="meetup.createdBy === this.auth.user.id"
+        >
+          Редактировать
+        </button>
+      </div>
+      <div class="buttons__expand-container">
+        <button
+          class="buttons__item buttons__item--more"
+          *ngIf="!openedCard.getOpenedCard()?.includes(meetup.id)"
+          (click)="showMore(meetup)"
+        >
+          <img src="../../../assets/images/logo-more.svg" alt="Подробно" />
+        </button>
+        <button
+          class="buttons__item buttons__item--more"
+          *ngIf="openedCard.getOpenedCard()?.includes(meetup.id)"
+          (click)="showLess(meetup)"
+        >
+          <img src="../../../assets/images/logo-less.svg" alt="Скрыть" />
+        </button>
+      </div>
+    </div>
+  </footer>
+</section>

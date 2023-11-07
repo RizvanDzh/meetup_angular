@@ -1,6 +1,7 @@
 <footer class="footer">
   <div class="footer__container">
-    footer
-    <button class="footer__button"></button>
+    <button class="footer__button" (click)="openDialog()" *ngIf="isAuth">
+      Создать митап
+    </button>
   </div>
 </footer>

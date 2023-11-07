@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,8 @@ import { MeetupFormComponent } from './components/meetup-form/meetup-form.compon
 import { AuthComponent } from './components/auth/auth.component';
 import { AboutComponent } from './components/about/about.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { MeetupsComponent } from './components/meetups/meetups.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +25,15 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     MeetupFormComponent,
     AuthComponent,
     AboutComponent,
+    MeetupsComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

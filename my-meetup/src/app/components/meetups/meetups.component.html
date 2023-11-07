@@ -1,0 +1,14 @@
+<div class="meetups">
+  <form action="meetups__form form">
+    <input
+      type="text"
+      class="form__input"
+      placeholder="Введите слово..."
+      [formControl]="search"
+    />
+  </form>
+  <app-meetup-card
+    *ngFor="let meetup of filteredMeetups"
+    [meetup]="meetup"
+  ></app-meetup-card>
+</div>

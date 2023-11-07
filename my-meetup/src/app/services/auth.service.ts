@@ -20,7 +20,7 @@ export class AuthService {
         map((res) => {
           if (res.token) {
             localStorage.setItem('token', res.token);
-            this.router.navigate(['about']);
+            this.router.navigate(['meetups']);
           }
           return null;
         })
@@ -54,7 +54,7 @@ export class AuthService {
   public get user(): any {
     const token = this.token;
     if (token) {
-      const userJwt = this.parseJwt;
+      const userJwt = this.parseJwt(token);
       return userJwt;
     } else {
       return null;
